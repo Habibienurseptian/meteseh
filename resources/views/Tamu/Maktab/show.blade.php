@@ -38,6 +38,11 @@
                 <p class="text-sm font-medium text-gray-500">Lokasi Rumah</p>
                 <p class="text-lg font-semibold text-gray-900">{{ $maktab->lokasi_rumah ?? 'N/A' }}</p>
             </div>
+            <div class="flex flex-col">
+                <p class="text-sm font-medium text-gray-500">Kapasitas Penghuni</p>
+                <p class="text-lg font-semibold text-gray-900">{{ $maktab->kapasitas_penghuni ?? 'N/A' }}</p>
+            </div>
+            
             <div class="flex flex-col md:col-span-2">
                 <p class="text-sm font-medium text-gray-500">Lokasi Rumah</p>
                 @if ($maktab->lokasi_rumah)

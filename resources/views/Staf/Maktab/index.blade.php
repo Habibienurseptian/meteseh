@@ -47,6 +47,8 @@
                         <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Lokasi Rumah</th>
                         <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Nama Pemilik</th>
                         <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Nomor Telepon</th>
+                        <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Kapasitas</th>
+                        <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Sisa Kapasitas</th>
                         <th class="hidden lg:table-cell px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Map</th>
                         <th class="px-3 py-3 sm:px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Aksi</th>
                     </tr>
@@ -57,6 +59,8 @@
                             <td class="px-3 py-4 sm:px-6 text-sm text-gray-900 break-words">{{ $maktab->lokasi_rumah }}</td>
                             <td class="px-3 py-4 sm:px-6 text-sm text-gray-900 whitespace-nowrap">{{ $maktab->nama_pemilik }}</td>
                             <td class="px-3 py-4 sm:px-6 text-sm text-gray-900 whitespace-nowrap">{{ $maktab->nomor_telepon ?? '-' }}</td>
+                            <td class="px-3 py-4 sm:px-6 text-sm text-gray-900 whitespace-nowrap">{{ $maktab->kapasitas_penghuni ?? '-' }}</td>
+                            <td class="px-3 py-4 sm:px-6 text-sm text-gray-900 whitespace-nowrap">{{ $maktab->sisa_kapasitas ?? '-' }}</td>
                             <td class="hidden lg:table-cell px-3 py-4 sm:px-6 text-sm text-gray-900">
                                 @if ($maktab->lokasi_rumah)
                                     <iframe

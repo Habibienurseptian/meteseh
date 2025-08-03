@@ -1,7 +1,9 @@
 <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg p-6 flex-col items-center z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:flex">
-  <div class="flex justify-between items-center w-full mb-8">
-    <div class="text-2xl font-semibold text-gray-800">HAF Meteseh</div>
-    <button id="close-sidebar-button" class="lg:hidden text-gray-500 hover:text-gray-600 focus:outline-none">
+  <div class="flex flex-col items-center w-full mb-8">
+  {{-- Mosque Logo --}}
+    <img src="{{ asset('images/meteseh-logo.png') }}" alt="HAF Meteseh Logo" class="h-20 w-20">
+    <!-- <div class="text-3xl font-bold text-gray-800 dark:text-gray-200">HAF Meteseh</div> -->
+    <button id="close-sidebar-button" class="lg:hidden text-gray-500 hover:text-gray-600 focus:outline-none absolute top-4 right-4 dark:text-gray-400">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>

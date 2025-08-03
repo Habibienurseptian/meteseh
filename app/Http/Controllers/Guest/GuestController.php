@@ -54,7 +54,7 @@ class GuestController extends Controller
             'Papua', 'Papua Barat', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan', 'Papua Barat Daya'
         ];
 
-        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Kereta Api', 'Lainnya'];
+        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Kereta Api', 'Pesawat', 'Lainnya'];
 
         return view('tamu.bookings.create', compact('regions', 'vehicleTypes'));
     }

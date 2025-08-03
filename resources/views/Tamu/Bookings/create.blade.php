@@ -82,7 +82,7 @@
                     <div>
                         <label for="number_of_vehicles" class="block text-sm font-medium text-gray-700">Jumlah Kendaraan</label>
                         <input type="number" id="number_of_vehicles" name="number_of_vehicles" value="{{ old('number_of_vehicles') }}" min="0"
-                               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="0 jika tidak ada">
                         @error('number_of_vehicles')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror

@@ -14,6 +14,8 @@ class Maktab extends Model
         'alamat_rumah',
         'nama_pemilik',
         'nomor_telepon',
+        'kapasitas_penghuni',
+        'sisa_kapasitas',
     ];
 
      public function bookings()

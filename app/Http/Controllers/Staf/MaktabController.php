@@ -17,14 +17,25 @@ class MaktabController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+
+        $query = Maktab::query();
+
         if ($search) {
-            $maktabs = Maktab::where('lokasi_rumah', 'like', '%' . $search . '%')
-                             ->orWhere('nama_pemilik', 'like', '%' . $search . '%')
-                             ->paginate(10);
-        } else {
-            $maktabs = Maktab::paginate(10);
+            $query->where(function($q) use ($search) {
+                $q->where('lokasi_rumah', 'like', '%' . $search . '%')
+                ->orWhere('nama_pemilik', 'like', '%' . $search . '%');
+            });
         }
-        
+
+        // Ambil data maktab dengan booking terhubung
+        $maktabs = $query->with('bookings')->paginate(10);
+
+        // Hitung sisa kapasitas untuk masing-masing maktab
+        foreach ($maktabs as $maktab) {
+            $total_jamaah = $maktab->bookings->sum('number_of_pilgrims');
+            $maktab->sisa_kapasitas = max(0, $maktab->kapasitas_penghuni - $total_jamaah);
+        }
+
         return view('staf.maktab.index', compact('maktabs', 'search'));
     }
 
@@ -39,9 +50,15 @@ class MaktabController extends Controller
             'lokasi_rumah' => 'required|string|max:255',
             'nama_pemilik' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:20',
+            'kapasitas_penghuni' => 'required|integer|min:1',
         ]);
 
-        Maktab::create($request->all());
+        Maktab::create($request->only([
+            'lokasi_rumah',
+            'nama_pemilik',
+            'nomor_telepon',
+            'kapasitas_penghuni',
+        ]));
 
         return redirect()->route('staf.maktab.index')->with('success', 'Maktab berhasil ditambahkan!');
     }
@@ -49,9 +66,11 @@ class MaktabController extends Controller
     public function show(string $id)
     {
         $maktab = Maktab::findOrFail($id);
-        $booking = Booking::where('maktab_id', $id)->first();
+        $bookings = Booking::where('maktab_id', $id)->first();
+        $total_jamaah = $maktab->bookings()->sum('number_of_pilgrims');
+        $sisa_kapasitas = max(0, $maktab->kapasitas_penghuni - $total_jamaah);
 
-        return view('staf.maktab.show', compact('maktab', 'booking'));
+        return view('staf.maktab.show', compact('maktab', 'bookings', 'total_jamaah', 'sisa_kapasitas'));
     }
 
     public function edit(Maktab $maktab)
@@ -65,9 +84,15 @@ class MaktabController extends Controller
             'lokasi_rumah' => 'required|string|max:255',
             'nama_pemilik' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:20',
+            'kapasitas_penghuni' => 'required|integer|min:1',
         ]);
 
-        $maktab->update($request->all());
+        $maktab->update($request->only([
+            'lokasi_rumah',
+            'nama_pemilik',
+            'nomor_telepon',
+            'kapasitas_penghuni',
+        ]));
 
         return redirect()->route('staf.maktab.index')->with('success', 'Maktab berhasil diperbarui!');
     }

@@ -55,7 +55,7 @@ class BookingController extends Controller
             'Maluku', 'Maluku Utara',
             'Papua', 'Papua Barat', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan', 'Papua Barat Daya'
         ];
-        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Kereta Api', 'Lainnya'];
+        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Kereta Api', 'Pesawat', 'Lainnya'];
         // $statuses = ['confirmed', 'pending', 'cancelled'];
         // $pickup_statuses = ['Sudah Dijemput', 'Menunggu Penjemputan', 'Dibatalkan'];
         // $maktabs = Maktab::all();
@@ -132,15 +132,39 @@ class BookingController extends Controller
     public function edit(string $id)
     {
         $booking = Booking::findOrFail($id);
-        $regions = ['Jakarta', 'Bandung', 'Surabaya', 'Medan', 'Makassar'];
-        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Lainnya']; // Definisi vehicleTypes
+
+        $regions = [
+            'Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Kepulauan Riau',
+            'Jambi', 'Bengkulu', 'Sumatera Selatan', 'Kepulauan Bangka Belitung', 'Lampung',
+            'DKI Jakarta', 'Jawa Barat', 'Banten', 'Jawa Tengah', 'DI Yogyakarta', 'Jawa Timur',
+            'Bali', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur',
+            'Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara',
+            'Sulawesi Utara', 'Gorontalo', 'Sulawesi Tengah', 'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tenggara',
+            'Maluku', 'Maluku Utara',
+            'Papua', 'Papua Barat', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan', 'Papua Barat Daya'
+        ];
+
+        $vehicleTypes = ['Bus Besar', 'Minibus', 'Van', 'Mobil Pribadi', 'Kereta Api', 'Pesawat', 'Lainnya'];
         $statuses = ['confirmed', 'pending', 'cancelled'];
         $pickup_statuses = ['Sudah Dijemput', 'Menunggu Penjemputan', 'Dibatalkan'];
-        $maktabs = Maktab::all();
 
-        // Pastikan $vehicleTypes dilewatkan ke view
-        return view('staf.bookings.edit', compact('booking', 'regions', 'vehicleTypes', 'statuses', 'pickup_statuses', 'maktabs'));
+        $maktabs = Maktab::with('bookings')->get();
+
+        foreach ($maktabs as $maktab) {
+            $total_jamaah = $maktab->bookings->sum('number_of_pilgrims');
+            $maktab->sisa_kapasitas = max(0, $maktab->kapasitas_penghuni - $total_jamaah);
+        }
+
+        return view('staf.bookings.edit', compact(
+            'booking',
+            'regions',
+            'vehicleTypes',
+            'statuses',
+            'pickup_statuses',
+            'maktabs'
+        ));
     }
+
 
     /**
      * Memperbarui booking tertentu di database.

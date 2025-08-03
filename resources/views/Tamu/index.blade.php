@@ -46,7 +46,7 @@
     <div class="bg-white p-8 rounded-xl shadow-lg">
         {{-- Judul, form pencarian, dan tombol "Tambah Booking" --}}
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Recent Bookings</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Maktab Bookings</h2>
             <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto">
                 {{-- Search Form --}}
                 <form action="{{ route('tamu.index') }}" method="GET" class="w-full md:w-auto flex items-center space-x-2">

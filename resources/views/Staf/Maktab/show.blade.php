@@ -39,6 +39,22 @@
                 <p class="text-sm font-medium text-gray-500">Lokasi Rumah</p>
                 <p class="text-lg font-semibold text-gray-900">{{ $maktab->lokasi_rumah ?? 'N/A' }}</p>
             </div>
+            <div class="flex flex-col">
+                <p class="text-sm font-medium text-gray-500">Kapasitas Penghuni</p>
+                <p class="text-lg font-semibold text-gray-900">{{ $maktab->kapasitas_penghuni ?? 'N/A' }}</p>
+            </div>
+            @if ($total_jamaah > $maktab->kapasitas_penghuni)
+                <div class="col-span-full mt-4">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Peringatan!</strong>
+                        <span class="block sm:inline">Jumlah jamaah ({{ $total_jamaah }} orang) melebihi kapasitas penghuni maktab ({{ $maktab->kapasitas_penghuni }} orang).</span>
+                    </div>
+                </div>
+            @endif
+            <div class="flex flex-col">
+                <p class="text-sm font-medium text-gray-500">Sisa Kapasitas</p>
+                <p class="text-lg font-semibold text-gray-900">{{ $sisa_kapasitas }} orang</p>
+            </div>
             
             {{-- Menggunakan col-span-full untuk memastikan peta selalu full-width --}}
             <div class="col-span-full">
