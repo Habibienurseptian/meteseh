@@ -32,10 +32,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
 
-            // Hanya izinkan role staf dan guest
+            // Hanya izinkan role staf dan tamu
             if ($user->role === 'staf') {
                 return redirect()->intended('/staf')->with('success', 'Selamat datang, Staf!');
-            }else {
+            } elseif ($user->role === 'tamu') {
+                return redirect()->intended('/tamu/bookings/create')->with('success', 'Selamat datang, Tamu!');
+            } else {
                 Auth::logout();
                 return back()->with('error', 'Akun Anda tidak diizinkan login.')->withInput();
             }
@@ -45,6 +47,7 @@ class LoginController extends Controller
         return back()->with('error', 'Email atau password salah!')->withInput();
     }
 
+    // Tampilkan form reset password
     public function showResetForm(Request $request, $token)
     {
         return view('auth.reset-password', [
@@ -60,6 +63,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'Berhasil logout.');
+        return redirect('/')->with('success', 'Berhasil logout.');
     }
 }

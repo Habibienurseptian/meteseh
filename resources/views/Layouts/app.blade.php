@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAF Meteseh | 2025</title>
+    <title>HAFMeteseh | 2025</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,18 +36,7 @@
                         </svg>
                     </button>
                 </div>
-                
                 <h1 class="text-xl lg:text-3xl font-bold text-gray-800">@yield('title')</h1>
-                @if ($user && $user->role === 'staf')
-                <div class="flex items-center space-x-3">
-                    <div class="text-right">
-                        <div class="text-gray-800 font-semibold">{{ $user->name }}</div>
-                    </div>
-                    <img class="h-10 w-10 rounded-full object-cover shadow"
-                        src="{{ $user->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&background=4f8cff&color=fff&size=40' }}"
-                        alt="User Avatar">
-                </div>
-                @endif
             </header>
 
             {{-- Main Content --}}

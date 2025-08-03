@@ -11,7 +11,6 @@ class Booking extends Model
 
      protected $fillable = [
         'booking_code',
-        'edit_token',
         'region',
         'group_name',
         'group_address',

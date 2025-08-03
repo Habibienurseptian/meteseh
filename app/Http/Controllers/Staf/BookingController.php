@@ -89,11 +89,9 @@ class BookingController extends Controller
         // Hitung jumlah booking untuk generate kode
         $count = Booking::count() + 1;
         $code = 'MKTB-' . str_pad($count, 4, '0', STR_PAD_LEFT);
-        $token = Str::random(32);
 
         $booking = Booking::create([
             'booking_code' => $code,
-            'edit_token' => $token,
             'region' => $request->region,
             'group_name' => $request->group_name,
             'group_address' => $request->group_address,

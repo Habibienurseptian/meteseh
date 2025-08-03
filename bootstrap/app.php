@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'only_guest' => \App\Http\Middleware\OnlyGuest::class,
             'redirect.if.staf' => \App\Http\Middleware\RedirectIfStaf::class,
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

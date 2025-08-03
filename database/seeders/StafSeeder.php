@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Hash;
 
 class StafSeeder extends Seeder
 {
-    /**
-     * Jalankan seeder.
-     */
     public function run(): void
     {
-        User::create([
-            'name' => 'Staf',
-            'email' => 'staf@gmail.com',
-            'password' => Hash::make('admin123'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'staf@gmail.com'],
+            [
+                'name' => 'Staf',
+                'password' => Hash::make('admin123'),
+                'role' => 'staf',
+            ]
+        );
     }
 }

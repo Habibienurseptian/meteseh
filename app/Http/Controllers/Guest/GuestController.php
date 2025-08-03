@@ -78,14 +78,10 @@ class GuestController extends Controller
         // Hitung jumlah booking untuk generate kode
         $count = Booking::count() + 1;
         $code = 'MKTB-' . str_pad($count, 4, '0', STR_PAD_LEFT);
-        $token = Str::random(32);
-        
-
         
 
         $booking = Booking::create([
             'booking_code' => $code,
-            'edit_token' => $token,
             'region' => $request->region,
             'group_name' => $request->group_name,
             'group_address' => $request->group_address,
@@ -102,30 +98,27 @@ class GuestController extends Controller
         ->with('success', 'Booking berhasil disimpan.')
         ->with('edit_link', route('tamu.bookings.edit', [
             'booking_code' => $code,
-            'token' => $token
         ]));
     }
 
-      public function show(string $id)
+    public function show(string $id)
     {
         $booking = Booking::with('maktab')->findOrFail($id);
         $maktab = $booking->maktab;
         return view('tamu.bookings.show', compact('booking', 'maktab'));
     }
 
-    public function edit($booking_code, $token)
+    public function edit($booking_code)
     {
        $booking = Booking::where('booking_code', $booking_code)
-                      ->where('edit_token', $token)
                       ->firstOrFail();
 
         return view('tamu.bookings.edit', compact('booking'));
     }
 
-    public function update(Request $request, $booking_code, $token)
+    public function update(Request $request, $booking_code)
     {
         $booking = Booking::where('booking_code', $booking_code)
-                        ->where('edit_token', $token)
                         ->firstOrFail();
 
         $request->validate([

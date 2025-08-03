@@ -23,7 +23,12 @@ class MaktabController extends Controller
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->where('lokasi_rumah', 'like', '%' . $search . '%')
-                ->orWhere('nama_pemilik', 'like', '%' . $search . '%');
+                ->orWhere('nama_pemilik', 'like', '%' . $search . '%')
+                ->orWhere('nomor_telepon', 'like', '%' . $search . '%')
+                ->orWhere('kapasitas_penghuni', 'like', '%' . $search . '%')
+                ->orWhere('sisa_kapasitas', 'like', '%' . $search . '%')
+                ->paginate(10);
+
             });
         }
 

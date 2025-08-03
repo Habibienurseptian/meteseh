@@ -81,6 +81,7 @@
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Kode Booking</th>
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap hidden sm:table-cell">Wilayah</th>
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Nama Rombongan</th>
+                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap hidden lg:table-cell">Alamat Rombongan</th>
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap hidden md:table-cell">Nama Ketua</th>
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap hidden lg:table-cell">Jumlah Jamaah</th>
                         <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap hidden md:table-cell">Waktu Kedatangan</th>
@@ -96,6 +97,7 @@
                             <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $booking->booking_code }}</td>
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800 hidden sm:table-cell">{{ $booking->region ?? 'N/A' }}</td>
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800">{{ $booking->group_name ?? 'N/A' }}</td>
+                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800 hidden lg:table-cell">{{ $booking->group_address ?? 'N/A' }}</td>
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800 hidden md:table-cell">{{ $booking->leader_name ?? 'N/A' }}</td>
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800 hidden lg:table-cell">{{ $booking->number_of_pilgrims ?? 'N/A' }}</td>
                             <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-800 hidden md:table-cell">{{ \Carbon\Carbon::parse($booking->arrival_time)->format('Y-m-d H:i A') ?? 'N/A' }}</td>
