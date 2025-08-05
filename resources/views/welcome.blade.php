@@ -38,7 +38,7 @@
             </div> -->
 
             <div class="flex items-center space-x-4">
-                <a href="{{ route('staf.register.form') }}" class="text-gray-600 hover:text-indigo-700 transition-colors hidden md:block">Register</a>
+                <!-- <a href="{{ route('staf.register.form') }}" class="text-gray-600 hover:text-indigo-700 transition-colors hidden md:block">Register</a> -->
                 <a href="{{ route('login') }}" class="bg-gray-800 text-white font-semibold py-2 px-5 rounded-lg shadow-lg hover:bg-gray-900 transition-colors">Login</a>
             </div>
         </nav>

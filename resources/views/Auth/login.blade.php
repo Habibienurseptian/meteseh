@@ -66,10 +66,10 @@
         <a href="{{ route('password.forgot.direct') }}" class="small">Lupa password?</a>
       </div> -->
 
-      <div class="text-center mt-3">
+      <!-- <div class="text-center mt-3">
         <span class="text-muted">Belum punya akun?</span>
         <a href="{{ route('staf.register.form') }}" class="small fw-semibold">Daftar</a>
-      </div>
+      </div> -->
     </div>
   </div>
 
